@@ -1,4 +1,4 @@
-ACTOR Pistol : KTWeapon
+ACTOR Pistol : KTWeapon 5010
 {
   Weapon.SelectionOrder 1900
   Weapon.AmmoUse 1
