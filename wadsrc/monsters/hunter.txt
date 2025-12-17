@@ -1,0 +1,43 @@
+ACTOR Hunter 9
+{
+  Health 30
+  Radius 20
+  Height 56
+  Mass 100
+  Speed 8
+  PainChance 170
+  Monster
+  +FLOORCLIP
+  SeeSound "shotguy/sight"
+  AttackSound "shotguy/attack"
+  PainSound "shotguy/pain"
+  DeathSound "shotguy/death"
+  ActiveSound "shotguy/active"
+  Obituary "$OB_SHOTGUY"
+  DropItem "Shotgun"
+  States
+  {
+  Spawn:
+    SPOS A 10 A_Look
+    Loop
+  See:
+    SPOS ABCDEFGHI 3 A_Chase
+    Loop
+  Missile:
+    SPOS JKL 10 A_FaceTarget
+    SPOS M 10 Bright A_SPosAttackUseAtkSound
+    SPOS NO 10
+    Goto See
+  Pain:
+    SPOS P 3
+    SPOS QR 3 A_Pain
+    Goto See
+  Death:
+    SPOS S 5
+    SPOS T 5 A_Scream
+    SPOS U 5 A_NoBlocking
+    SPOS VW 5
+    SPOS X -1
+    Stop
+  }
+}
