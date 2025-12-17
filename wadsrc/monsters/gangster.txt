@@ -1,0 +1,45 @@
+actor Gangster 3004
+{
+  SpawnID 4
+  Obituary "%o was killed by a Gangster."
+  Health 20
+  Radius 20
+  Height 56
+  Mass 100
+  Speed 8
+  PainChance 200
+  SeeSound "grunt/sight"
+  AttackSound "grunt/attack"
+  PainSound "grunt/pain"
+  DeathSound "grunt/death"
+  ActiveSound "grunt/active"
+  DropItem "Clip" 256
+  Monster
+  +FLOORCLIP
+  States
+  {
+  Spawn:
+    POSS A 10 A_Look
+    loop
+  See:
+    POSS ABCDEFGHI 4 A_Chase
+    loop
+  Missile:
+    POSS JK 10 A_FaceTarget
+    POSS LM 8 A_PosAttack
+    POSS N 8 A_PosAttack
+    POSS OP 8
+    goto See
+  Pain:
+    POSS Q 3
+    POSS R 3 A_Pain
+    goto See
+  Death:
+    POSS S 5
+    POSS T 5 A_Scream
+    POSS U 5 A_NoBlocking
+    POSS VWXY 5
+    POSS Z -1
+    stop
+  }
+}
