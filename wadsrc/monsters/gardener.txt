@@ -1,0 +1,42 @@
+ACTOR Demon 3002
+{
+  Health 150
+  PainChance 180
+  Speed 10
+  Radius 30
+  Height 56
+  Mass 400
+  Monster
+  +FLOORCLIP
+  SeeSound "demon/sight"
+  AttackSound "demon/melee"
+  PainSound "demon/pain"
+  DeathSound "demon/death"
+  ActiveSound "demon/active"
+  Obituary "$OB_DEMONHIT" // "%o was bit by a demon."
+  States
+  {
+  Spawn:
+    SARG A 10 A_Look
+    Loop
+  See:
+    SARG ABCDEFGH 2 Fast A_Chase
+    Loop
+  Melee:
+    SARG IJKL 8 Fast A_FaceTarget
+    SARG M 8 Fast A_SargAttack
+    Goto See
+  Pain:
+    SARG N 2 Fast
+    SARG O 2 Fast A_Pain
+    Goto See
+  Death:
+    SARG P 8
+    SARG Q 8 A_Scream
+    SARG R 4
+    SARG S 4 A_NoBlocking
+    SARG TU 4
+    SARG V -1
+    Stop
+  }
+}
