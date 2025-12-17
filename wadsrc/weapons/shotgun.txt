@@ -1,0 +1,34 @@
+ACTOR Shotgun : KTWeapon 2001
+{
+  Weapon.SelectionOrder 1300
+  Weapon.AmmoUse 1
+  Weapon.AmmoGive 8
+  Weapon.AmmoType "Shell"
+  Inventory.PickupMessage "$GOTSHOTGUN"
+  Obituary "$OB_MPSHOTGUN"
+  Tag "$TAG_SHOTGUN"
+  States
+  {
+  Ready:
+    SHTG A 1 A_WeaponReady
+    Loop
+  Deselect:
+    SHTG A 1 A_Lower
+    Loop
+  Select:
+    SHTG A 1 A_Raise
+    Loop
+  Fire:
+    SHTG A 3
+    SHTG B 7 A_FireShotgun
+    SHTG CD 5
+    SHTG E 4
+    SHTG F 5
+    SHTG G 3
+    SHTG A 7 A_ReFire
+    Goto Ready
+  Spawn:
+    SHOT A -1
+    Stop
+  }
+}
